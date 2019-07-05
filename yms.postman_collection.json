@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "6ae125f4-dcd4-41fe-96f2-aba96d433e92",
+		"name": "yms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户中心",
+			"item": [
+				{
+					"name": "登录",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"abc\",\n\t\"password\":\"123\"\n}"
+						},
+						"url": {
+							"raw": "http://api.yms.com/auth/login",
+							"protocol": "http",
+							"host": [
+								"api",
+								"yms",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "注销",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkueW1zLmNvbVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1NjIyOTQyNTUsImV4cCI6MTU2MjI5Nzg1NSwibmJmIjoxNTYyMjk0MjU1LCJqdGkiOiJYT01wZ09VN25Vak04cGJuIiwic3ViIjoxLCJwcnYiOiIzN2FlN2E3N2E4MTBiYmFkODM1YWJiMDdiZDFiN2E0ZTIyZGQ4YzM3In0.sBswTDn3ysZV3091_ajBW3xD0A1id8J2CelPrxsRyHc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://api.yms.com/auth/logout",
+							"protocol": "http",
+							"host": [
+								"api",
+								"yms",
+								"com"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刷新token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkueW1zLmNvbVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1NjIyOTUzMzEsImV4cCI6MTU2MjI5ODkzMSwibmJmIjoxNTYyMjk1MzMxLCJqdGkiOiJEUGFSVWJORER6NHRwWFB2Iiwic3ViIjoxLCJwcnYiOiIzN2FlN2E3N2E4MTBiYmFkODM1YWJiMDdiZDFiN2E0ZTIyZGQ4YzM3In0.9VyHy7Tf9nF0BWTs-3wT1cC5TwVFMrGgvuz3M7cqsC4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://api.yms.com/auth/refreshToken",
+							"protocol": "http",
+							"host": [
+								"api",
+								"yms",
+								"com"
+							],
+							"path": [
+								"auth",
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
