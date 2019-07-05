@@ -10,6 +10,9 @@ namespace App\Services\Member;
 
 
 use App\Business\Member\UserBusiness;
+use App\Http\Vo\Member\LoginVo;
+use App\Http\Vo\Member\RegisterVo;
+use App\Persistence\Model\User;
 use Illuminate\Support\Facades\Auth;
 
 class MemberService
@@ -28,14 +31,25 @@ class MemberService
 
 
     /**
+     * 注册
+     * @param RegisterVo $registerVo
+     * @return User
+     * @throws \App\Exceptions\AlreadyRegisterException
+     */
+    public function register(RegisterVo $registerVo)
+    {
+        return $this->userBusiness->saveUser($registerVo);
+    }
+
+
+    /**
      * 生成token
-     * @param $username
-     * @param $password
+     * @param LoginVo $loginVo
      * @return string
      */
-    public function generateToken($username, $password): string
+    public function generateToken(LoginVo $loginVo): string
     {
-        $user = $this->userBusiness->getByUsernameAndPwd($username, $password);
+        $user = $this->userBusiness->getByUsernameAndPwd($loginVo->username, $loginVo->password);
 
         return Auth::login($user);
     }

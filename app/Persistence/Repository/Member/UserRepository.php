@@ -28,4 +28,36 @@ class UserRepository
         ])->first();
     }
 
+
+    /**
+     * 保存用户
+     * @param array $user
+     * @return User
+     */
+    public function save($user)
+    {
+        return User::create($user);
+    }
+
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function update(User $user)
+    {
+        return $user->save();
+    }
+
+
+    /**
+     * 根据用户名获取用户信息
+     * @param $username
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getByUsername($username)
+    {
+        return User::query()->where('username', $username)->get();
+    }
+
 }

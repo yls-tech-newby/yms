@@ -8,5 +8,6 @@
 
 return [
     0 => 'success',
+    1001 => 'user already register',
     9999 => 'server unknown error'
 ];

@@ -9,11 +9,24 @@
 namespace App\Utils;
 
 
+use App\Http\Vo\Vo;
+use Illuminate\Http\Request;
+
 class BindingUtil
 {
 
-    public static function a(){
+    /**
+     * @param Request $request
+     * @param $vo
+     * @return mixed
+     */
+    public static function bindingRequest(Request $request, $vo)
+    {
+        foreach ($vo as $key => $value) {
+            $vo->$key = $request->json($key);
+        }
 
+        return $vo;
     }
 
 }

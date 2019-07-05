@@ -9,8 +9,11 @@
 namespace App\Business\Member;
 
 
+use App\Exceptions\AlreadyRegisterException;
+use App\Http\Vo\Member\RegisterVo;
 use App\Persistence\Model\User;
 use App\Persistence\Repository\Member\UserRepository;
+use App\Utils\TransferUtil;
 
 class UserBusiness
 {
@@ -36,6 +39,26 @@ class UserBusiness
     public function getByUsernameAndPwd($username, $password): User
     {
         return $this->userRepository->getByUsernameAndPwd($username, $password);
+    }
+
+
+    /**
+     * 保存用户
+     * @param RegisterVo $registerVo
+     * @return User
+     * @throws AlreadyRegisterException
+     */
+    public function saveUser(RegisterVo $registerVo)
+    {
+        $registerVo->password = md5($registerVo->password);
+        $user = TransferUtil::objectToArray($registerVo);
+
+        $existUsers = $this->userRepository->getByUsername($registerVo->username);
+        if ($existUsers->count() > 0) {
+            throw new AlreadyRegisterException;
+        }
+
+        return $this->userRepository->save($user);
     }
 
 
